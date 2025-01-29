@@ -1,0 +1,13 @@
+services:
+  infra:
+    image: hashicorp/terraform:latest
+    container_name: terraform_vpn
+    working_dir: /workspace
+    volumes:
+      - ./terraform:/workspace
+      - ~/.ssh:/root/.ssh:ro
+    env_file:
+      - ./.env
+    environment:
+      TF_LOG: INFO
+    entrypoint: ["/bin/sh", "-c"]
